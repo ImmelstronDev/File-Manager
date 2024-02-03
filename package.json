@@ -1,0 +1,25 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "It's application exist file manager on Node.js APIs",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js --username=your_username",
+    "dev": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ImmelstronDev/File-Manager.git"
+  },
+  "keywords": [
+    "file-maneger"
+  ],
+  "author": "ImmelstronDev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ImmelstronDev/File-Manager/issues"
+  },
+  "homepage": "https://github.com/ImmelstronDev/File-Manager#readme"
+}
