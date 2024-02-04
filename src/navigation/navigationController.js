@@ -11,6 +11,10 @@ export class NavigationController {
         const firstArg = argsArray.shift()
         switch (firstArg) {
             case 'up':{
+                if (argsArray) {
+                    process.stdout.write(this.operationFail + 'incorrect enter, enter only <up> command' + EOL)
+                    break
+                }
                 process.chdir('../')
                 break;
             }
@@ -26,11 +30,11 @@ export class NavigationController {
                 break
             }
             case 'ls': {
-                try {
-                    await this.viewListOfAllIn()
-                } catch (error) {
+                if (argsArray) {
                     process.stdout.write(this.operationFail + 'incorrect enter, enter only <ls> command' + EOL)
+                    break
                 }
+                await this.viewListOfAllIn()
                 break
             }
             default:{
@@ -44,11 +48,10 @@ export class NavigationController {
         const currentDir = resolve(process.cwd())
         const itemsList = await readdir(currentDir, {withFileTypes: true})
         const viewList = itemsList.reduce((acc, cue)=> {
-            const obj = {name: cue.name, type: cue.type}
+            const typeInfo = cue.isFile() ? 'file' : 'directory'
+            const obj = {name: cue.name, type: typeInfo}
             return [...acc, obj]
         }, [])
-
         console.table(viewList)
-        
     }
 }
