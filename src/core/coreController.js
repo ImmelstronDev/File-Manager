@@ -1,5 +1,5 @@
 import { EventListener } from "../eventListener/eventListener.js"
-import { EOL } from 'node:os'
+import { EOL, homedir } from 'node:os'
 
 export class CoreController {
     constructor() {
@@ -14,7 +14,8 @@ export class CoreController {
             this.checkUserName()
             this.welcome()
             this.eventListener = new EventListener(this.userName)
-            this.eventListener.viewCurrentWorkDir()
+            process.stdout.write(`You are currently in ${homedir}` + EOL)
+            process.chdir(homedir())
         } catch (error) {
             console.log(`OOPS:${error}`)
         }
