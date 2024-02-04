@@ -13,16 +13,17 @@ export class EventListener {
         this.rl = readline.createInterface({ input: process.stdin, output: process.stdout })
         this.rl.on('line', async (input)=> {
             try {
+                if(input.toString().trim() === '.exit') {
+                    process.stdout.write(this.goodbyMessage)
+                    process.exit(0)
+                }
                 await this.navigation.handle(input)
                 this.viewCurrentWorkDir()
             } catch (error) {
                 console.log(error)
             }
             
-            // if(input.toString().trim() === '.exit') {
-            //     process.stdout.write(this.goodbyMessage)
-            //     process.exit(0)
-            // }
+            
             
             
         })
