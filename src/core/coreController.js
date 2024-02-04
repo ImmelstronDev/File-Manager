@@ -14,6 +14,7 @@ export class CoreController {
             this.checkUserName()
             this.welcome()
             this.eventListener = new EventListener(this.userName)
+            this.eventListener.viewCurrentWorkDir()
         } catch (error) {
             console.log(`OOPS:${error}`)
         }

@@ -10,6 +10,7 @@ export class EventListener {
     start() {
         this.rl = readline.createInterface({ input: process.stdin, output: process.stdout })
         this.rl.on('line', (input)=> {
+            this.viewCurrentWorkDir()
             if(input.toString().trim() === '.exit') {
                 process.stdout.write(this.goodbyMessage)
                 process.exit(0)
@@ -32,5 +33,7 @@ export class EventListener {
        })
     }
    
-    
+    viewCurrentWorkDir() {
+        process.stdout.write(`You are currently in ${process.cwd()}` + EOL)
+    }
 }
