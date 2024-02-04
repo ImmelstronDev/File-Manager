@@ -5,6 +5,7 @@ export class EventListener {
     constructor(userName) {
         this.userName = userName
         this.goodbyMessage = `Thank you for using File Manager, ${this.userName}, goodbye!` + EOL
+        this.operationFail = 'Operation failed'
         this.start()
     }
     start() {
@@ -17,10 +18,6 @@ export class EventListener {
             }
             
         })
-        // process.stdin.on('data', (chunk)=> {
-        //     if (chunk.toString().trim() === '.exit') process.exit()
-            
-        // })
         process.on('exit', ()=> {
             this.rl.close();
             process.stdout.write(this.goodbyMessage)
