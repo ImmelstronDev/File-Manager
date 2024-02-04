@@ -1,8 +1,11 @@
+import { EventListener } from "../eventListener/eventListener.js"
+import { EOL } from 'node:os'
+
 export class CoreController {
     constructor() {
         this.userName = 'Empty'
         this.separator = '--username='
-        this._welcomeMessage = `Welcome to the File Manager, ${this.userName}!`
+        this._welcomeMessage = `Welcome to the File Manager, ${this.userName}!` + EOL
         this.start()
     }
 
@@ -10,13 +13,14 @@ export class CoreController {
         try {
             this.checkUserName()
             this.welcome()
+            this.eventListener = new EventListener(this.userName)
         } catch (error) {
             console.log(`OOPS:${error}`)
         }
     }
 
     set welcomeMessage(userName) {
-        this._welcomeMessage = `Welcome to the File Manager, ${userName}!`
+        this._welcomeMessage = `Welcome to the File Manager, ${userName}!` + EOL
     }
 
     get welcomeMessage() {
@@ -31,7 +35,6 @@ export class CoreController {
             this.userName = userName
             this.welcomeMessage = userName
         }
-        console.log('username:', userName, 'this.username:', this.userName)
 
     }
 
