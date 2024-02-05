@@ -3,7 +3,7 @@ import { EOL } from 'node:os'
 import { resolve } from 'node:path'
 export class NavigationController {
     constructor() {
-        this.operationFail = 'Operation failed'
+        this.operationFail = 'Operation failed '
     }
 
     async handle(command) {
@@ -21,7 +21,6 @@ export class NavigationController {
             case 'cd': {
                 const strWithPath = argsArray.join(' ')
                 const path = resolve(process.cwd(), strWithPath)
-                // console.log(path)
                 try {
                     process.chdir(path)
                 } catch (error) {
