@@ -3,6 +3,7 @@ import { EOL } from 'node:os'
 import { NavigationController } from '../navigation/navigationController.js'
 import { BasicOperationsController } from '../basicOperations/basicOperationsController.js'
 import { OperationSystemController } from '../operationSystem/operationSystemController.js'
+import { HashController } from '../hash/hashController.js'
 
 export class EventListener {
     constructor(userName) {
@@ -11,6 +12,7 @@ export class EventListener {
         this.navigation = new NavigationController()
         this.basicOperation = new BasicOperationsController()
         this.operationSystem = new OperationSystemController()
+        this.hash = new HashController()
         this.start()
     }
     start() {
@@ -35,6 +37,9 @@ export class EventListener {
                 }
                 if(commandArgs[0] === 'os'){
                     await this.operationSystem.handle(input)
+                }
+                if(commandArgs[0] === 'hash'){
+                    await this.hash.handle(input)
                 }
                 this.viewCurrentWorkDir()
             } catch (error) {
