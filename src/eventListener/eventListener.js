@@ -2,6 +2,7 @@ import readline from 'node:readline'
 import { EOL } from 'node:os'
 import { NavigationController } from '../navigation/navigationController.js'
 import { BasicOperationsController } from '../basicOperations/basicOperationsController.js'
+import { OperationSystemController } from '../operationSystem/operationSystemController.js'
 
 export class EventListener {
     constructor(userName) {
@@ -9,6 +10,7 @@ export class EventListener {
         this.goodbyMessage = `Thank you for using File Manager, ${this.userName}, goodbye!` + EOL
         this.navigation = new NavigationController()
         this.basicOperation = new BasicOperationsController()
+        this.operationSystem = new OperationSystemController()
         this.start()
     }
     start() {
@@ -30,7 +32,10 @@ export class EventListener {
                     || commandArgs[0] === 'mv'
                     || commandArgs[0] === 'rm'){
                         await this.basicOperation.handle(input)
-                    }
+                }
+                if(commandArgs[0] === 'os'){
+                    await this.operationSystem.handle(input)
+                }
                 this.viewCurrentWorkDir()
             } catch (error) {
                 console.log(error)
