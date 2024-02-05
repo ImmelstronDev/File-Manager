@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto'
 import { readFile } from 'node:fs/promises'
+import { EOL } from 'node:os'
 import { resolve } from 'node:path'
 export class HashController {
     constructor() {
@@ -10,8 +11,9 @@ export class HashController {
         try {
             const argsArray = command.split(' ')
         argsArray.shift()
-        if(!argsArray.length || argsArray !== 1) {
+        if(!argsArray.length || argsArray.length !== 1) {
             process.stdout.write(this.operationFail + 'incorrect enter argument, enter <path to file> after command <hash> via space' + EOL)
+            return
         }
         const path = resolve(process.cwd(), argsArray[0])
         const fileContent = await readFile(path, { encoding: 'utf8' })

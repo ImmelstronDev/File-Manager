@@ -4,6 +4,7 @@ import { NavigationController } from '../navigation/navigationController.js'
 import { BasicOperationsController } from '../basicOperations/basicOperationsController.js'
 import { OperationSystemController } from '../operationSystem/operationSystemController.js'
 import { HashController } from '../hash/hashController.js'
+import { ZipController } from '../zip/zipController.js'
 
 export class EventListener {
     constructor(userName) {
@@ -13,6 +14,7 @@ export class EventListener {
         this.basicOperation = new BasicOperationsController()
         this.operationSystem = new OperationSystemController()
         this.hash = new HashController()
+        this.zip = new ZipController()
         this.start()
     }
     start() {
@@ -40,6 +42,9 @@ export class EventListener {
                 }
                 if(commandArgs[0] === 'hash'){
                     await this.hash.handle(input)
+                }
+                if(commandArgs[0] === 'compress' || commandArgs[0] === 'decompress'){
+                    await this.zip.handle(input)
                 }
                 this.viewCurrentWorkDir()
             } catch (error) {
