@@ -11,7 +11,7 @@ export class NavigationController {
         const firstArg = argsArray.shift()
         switch (firstArg) {
             case 'up':{
-                if (argsArray) {
+                if (argsArray.length > 0) {
                     process.stdout.write(this.operationFail + 'incorrect enter, enter only <up> command' + EOL)
                     break
                 }
@@ -30,7 +30,7 @@ export class NavigationController {
                 break
             }
             case 'ls': {
-                if (argsArray) {
+                if (argsArray.length > 0) {
                     process.stdout.write(this.operationFail + 'incorrect enter, enter only <ls> command' + EOL)
                     break
                 }
